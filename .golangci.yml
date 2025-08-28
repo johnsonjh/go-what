@@ -1,0 +1,54 @@
+###############################################################################
+# DPS8M Proxy - .golangci.yml
+# Copyright (c) 2025 Jeffrey H. Johnson
+# Copyright (c) 2025 The DPS8M Development Team
+# SPDX-License-Identifier: MIT-0
+# scspell-id: 53256192-6bd1-11f0-b70d-80ee73e9b8e7
+###############################################################################
+
+version: "2"
+linters:
+  default: all
+  disable:
+    - containedctx
+    - contextcheck
+    - cyclop
+    - depguard
+    - err113
+    - exhaustruct
+    - forbidigo
+    - funlen
+    - gochecknoglobals
+    - gochecknoinits
+    - gocognit
+    - gocyclo
+    - ireturn
+    - maintidx
+    - mnd
+    - nestif
+    - noctx
+    - perfsprint
+    - varnamelen
+    - wrapcheck
+    - wsl
+    - wsl_v5
+  exclusions:
+    generated: lax
+    paths:
+      - builtin$
+      - examples$
+      - third_party$
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+    - golines
+    - swaggo
+  exclusions:
+    generated: lax
+    paths:
+      - builtin$
+      - examples$
+      - third_party$

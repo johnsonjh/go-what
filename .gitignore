@@ -1,0 +1,18 @@
+###############################################################################
+# go-what - .gitignore
+# Copyright (c) 2016 MIT PDOS
+# Copyright (c) 2025 Jeffrey H. Johnson
+# SPDX-License-Identifier: MIT-0
+# scspell-id: 0c026eac-83ca-11f0-a83d-80ee73e9b8e7
+###############################################################################
+
+*~
+*.bak
+cross.bin/
+go-what
+GPATH
+GRTAGS
+GTAGS
+*.o
+tags
+.venv

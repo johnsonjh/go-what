@@ -27,7 +27,8 @@ import (
 	"strings"
 	"syscall"
 	"time"
-	"unsafe"
+
+	"golang.org/x/term"
 )
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,18 +77,12 @@ func prettyTime(ts int64) string {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 func getTermSize() (int, int) {
-	var dimensions [4]uint16
-
-	_, _, err := syscall.Syscall6(
-		syscall.SYS_IOCTL,
-		uintptr(os.Stdout.Fd()), //nolint:unconvert
-		syscall.TIOCGWINSZ,
-		uintptr(unsafe.Pointer(&dimensions)), 0, 0, 0) //nolint:gosec
-	if err == 0 {
-		return int(dimensions[1]), int(dimensions[0])
+	w, h, err := term.GetSize(int(os.Stdout.Fd()))
+	if err != nil {
+		return 80, 24
 	}
 
-	return 80, 24
+	return w, h
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

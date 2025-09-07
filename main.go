@@ -153,6 +153,14 @@ func main() {
 		cmdline := string(cmdlineContent)
 		if strings.HasPrefix(cmdline, "/sbin/getty") ||
 			strings.HasPrefix(cmdline, "/sbin/agetty") ||
+			strings.HasPrefix(cmdline, "tmux") ||
+			strings.HasPrefix(cmdline, "screen") ||
+			strings.HasPrefix(cmdline, "dtach") ||
+			strings.HasPrefix(cmdline, "-zsh") ||
+			strings.HasPrefix(cmdline, "-ksh") ||
+			strings.HasPrefix(cmdline, "-ksh93") ||
+			strings.HasPrefix(cmdline, "-sh") ||
+			strings.HasPrefix(cmdline, "-bash") ||
 			strings.HasPrefix(cmdline, "/sbin/mingetty") {
 			continue
 		}

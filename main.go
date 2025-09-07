@@ -188,7 +188,7 @@ func main() {
 		"USER", "TTY", "LOGIN", "\x1b[4mINPUT\x1b[0m", "OUTPUT", "WHAT")
 
 	uidColors := make(map[uint32]int)
-	colors := []int{32, 33, 34, 35, 36}
+	colors := []int{32, 33, 35, 36}
 
 	loggedInUids := make(map[uint32]bool)
 	for _, tty := range sortedTtys {

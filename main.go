@@ -22,6 +22,7 @@ import (
 	"os"
 	"os/user"
 	"path/filepath"
+	"slices"
 	"sort"
 	"strconv"
 	"strings"
@@ -243,9 +244,7 @@ func main() {
 			nottyUids = append(nottyUids, uid)
 		}
 	}
-	sort.Slice(nottyUids, func(i, j int) bool {
-		return nottyUids[i] < nottyUids[j]
-	})
+	slices.Sort(nottyUids)
 	for _, uid := range nottyUids {
 		count := notty[uid]
 		u, err := user.LookupId(strconv.Itoa(int(uid)))

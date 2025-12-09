@@ -219,7 +219,7 @@ func main() {
 			colors[uidColors[tty.Stat.Uid]])
 
 		u, err := user.LookupId(strconv.Itoa(int(tty.Stat.Uid)))
-		if err != nil {
+		if err != nil || u == nil {
 			u = &user.User{Username: strconv.Itoa(int(tty.Stat.Uid))}
 		}
 
@@ -248,7 +248,7 @@ func main() {
 	for _, uid := range nottyUids {
 		count := notty[uid]
 		u, err := user.LookupId(strconv.Itoa(int(uid)))
-		if err != nil {
+		if err != nil || u == nil {
 			u = &user.User{Username: strconv.Itoa(int(uid))}
 		}
 		fmt.Printf("% -8.8s %-7s %d more processes\n",

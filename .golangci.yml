@@ -13,31 +13,38 @@ linters:
     - containedctx
     - contextcheck
     - cyclop
-    - depguard
     - err113
     - exhaustruct
     - forbidigo
     - funlen
     - gochecknoglobals
-    - gochecknoinits
     - gocognit
     - gocyclo
-    - ireturn
     - maintidx
     - mnd
     - nestif
     - noctx
-    - perfsprint
     - varnamelen
-    - wrapcheck
     - wsl
-    - wsl_v5
   exclusions:
     generated: lax
     paths:
       - builtin$
       - examples$
       - third_party$
+  settings:
+    depguard:
+      rules:
+        main:
+          files:
+            - $all
+          allow:
+            - $gostd
+            - golang.org/x/sys
+            - golang.org/x/term
+          deny:
+            - pkg: io/ioutil
+              desc: "Deprecated: see https://pkg.go.dev/io/ioutil for details"
 formatters:
   enable:
     - gci

@@ -96,16 +96,19 @@ func main() {
 		files, _ := filepath.Glob(glob)
 		for _, file := range files {
 			var stat syscall.Stat_t
+
 			err := syscall.Stat(file, &stat)
 			if err != nil {
 				continue
 			}
+
 			ttys[stat.Rdev] = &TTY{Name: file[5:], Stat: stat}
 		}
 	}
 
 	notty := make(map[uint32]int)
 	uids := make(map[uint32]bool)
+
 	procFiles, _ := os.ReadDir("/proc")
 	for _, f := range procFiles {
 		pid, err := strconv.Atoi(f.Name())
@@ -115,6 +118,7 @@ func main() {
 
 		statPath := fmt.Sprintf("/proc/%d/stat",
 			pid)
+
 		statContent, err := os.ReadFile(statPath) //nolint:gosec
 		if err != nil {
 			continue
@@ -122,24 +126,28 @@ func main() {
 
 		cmdlinePath := fmt.Sprintf("/proc/%d/cmdline",
 			pid)
+
 		cmdlineContent, err := os.ReadFile(cmdlinePath) //nolint:gosec
 		if err != nil {
 			continue
 		}
 
 		var procStat syscall.Stat_t
+
 		err = syscall.Stat(fmt.Sprintf("/proc/%d",
 			pid),
 			&procStat)
 		if err != nil {
 			continue
 		}
+
 		uids[procStat.Uid] = true
 
 		i := strings.LastIndex(string(statContent), ")")
 		if i == -1 {
 			continue
 		}
+
 		parts := strings.Fields(string(statContent)[i+2:])
 
 		ttyNr, _ := strconv.ParseUint(parts[4], 10, 64)
@@ -193,6 +201,7 @@ func main() {
 		loadavgParts[0], loadavgParts[1], loadavgParts[2], loadavgParts[3])
 
 	cols, _ := getTermSize()
+
 	fmt.Printf("% -8s %-7s %6s %6s %6s %s\n",
 		"USER", "TTY", "LOGIN", "\x1b[4mINPUT\x1b[0m", "OUTPUT", "WHAT")
 
@@ -200,6 +209,7 @@ func main() {
 	colors := []int{32, 33, 35, 36}
 
 	loggedInUids := make(map[uint32]bool)
+
 	for _, tty := range sortedTtys {
 		if len(tty.Processes) > 0 {
 			loggedInUids[tty.Stat.Uid] = true
@@ -238,19 +248,25 @@ func main() {
 	if _, ok := notty[0]; !ok {
 		notty[0] = 0
 	}
+
 	var nottyUids []uint32
+
 	for uid := range notty {
 		if _, ok := loggedInUids[uid]; ok || uid == 0 {
 			nottyUids = append(nottyUids, uid)
 		}
 	}
+
 	slices.Sort(nottyUids)
+
 	for _, uid := range nottyUids {
 		count := notty[uid]
+
 		u, err := user.LookupId(strconv.Itoa(int(uid)))
 		if err != nil || u == nil {
 			u = &user.User{Username: strconv.Itoa(int(uid))}
 		}
+
 		fmt.Printf("% -8.8s %-7s %d more processes\n",
 			u.Username, "none", count)
 	}

@@ -174,7 +174,8 @@ func main() {
 			continue
 		}
 
-		if tty, ok := ttys[ttyNr]; ok && tpgid == pid {
+		tty, ok := ttys[ttyNr]
+		if ok && tpgid == pid {
 			tty.Processes = append(tty.Processes, strings.ReplaceAll(cmdline, "\x00", " "))
 		}
 	}
@@ -252,7 +253,8 @@ func main() {
 	var nottyUids []uint32
 
 	for uid := range notty {
-		if _, ok := loggedInUids[uid]; ok || uid == 0 {
+		_, ok := loggedInUids[uid]
+		if ok || uid == 0 {
 			nottyUids = append(nottyUids, uid)
 		}
 	}

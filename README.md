@@ -6,3 +6,9 @@
 # go-what
 
 A Go conversion of https://github.com/mit-pdos/what
+
+## Build
+
+```sh
+env GOTOOLCHAIN="$(grep '^go .*$' go.mod | tr -cd 'go0-9.\n')+auto" go build -v
+```

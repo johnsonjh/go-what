@@ -1,0 +1,17 @@
+###############################################################################
+# SPDX-License-Identifier: MIT-0
+# Copyright (c) 2025 Jeffrey H. Johnson
+# Copyright (c) 2025 The DPS8M Development Team
+# scspell-id: 6de67760-d4ad-11f0-abc4-80ee73e9b8e7
+###############################################################################
+
+version = 1
+SPDX-PackageName = "go-what"
+SPDX-PackageSupplier = "Jeffrey H. Johnson <johnsonjh.dev@gmail.com>"
+SPDX-PackageDownloadLocation = "https://gitlab.com/johnsonjh/go-what"
+
+[[annotations]]
+path = ["go.sum"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 Jeffrey H. Johnson"
+SPDX-License-Identifier = "MIT-0"

@@ -9,6 +9,9 @@ A Go conversion of [mit-pdos/what](https://github.com/mit-pdos/what)
 
 ## Build
 
+Working on Linux (and systems that provide a Linux-compatible procfs,
+same as the original Python implementation):
+
 ```sh
 env GOTOOLCHAIN="$(grep '^go .*$' go.mod | tr -cd 'go0-9.\n')+auto" go build -v
 ```

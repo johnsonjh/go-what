@@ -13,6 +13,7 @@ Working on Linux (and systems that provide a Linux-compatible procfs,
 same as the original Python implementation):
 
 ```sh
-export GOTOOLCHAIN="$(grep '^go .*$' go.mod | tr -cd 'go0-9.\n')+auto"
-go build -v
+env GOTOOLCHAIN="$(grep '^go .*$' go.mod | tr -cd 'go0-9.\n')+auto" \
+    GOFLAGS="-ldflags=-s -w" \
+  go build -v
 ```

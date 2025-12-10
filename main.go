@@ -10,10 +10,10 @@
 package main
 
 // This is a Golang conversion of https://github.com/mit-pdos/what
-// Like "w", but finds all processes associated with a TTY (not
-// just those registered in wtmp), and reports all users that are
-// running anything.  In particular, unlike "w", this will shows
-// things running in detached screens/tmuxen.
+
+// `go-what` is an improved version of the `w` tool.  It finds all processes associated with a
+// TTY (not just those registered in `wtmp`), and reports all users that are running anything.
+// In particular, unlike `w`, `go-what` will also show things running in detached screens/tmuxen.
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

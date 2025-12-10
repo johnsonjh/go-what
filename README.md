@@ -14,6 +14,6 @@ same as the original Python implementation):
 
 ```sh
 env GOTOOLCHAIN="$(grep '^go .*$' go.mod | tr -cd 'go0-9.\n')+auto" \
-    GOFLAGS="-ldflags=-s -w" \
-  go build -v
+  GOFLAGS="-ldflags=-s -w" \
+    go build -v
 ```

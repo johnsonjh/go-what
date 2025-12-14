@@ -274,6 +274,7 @@ func main() {
 		}
 
 		processString := "processes"
+
 		if count == 1 {
 			processString = "process"
 		}

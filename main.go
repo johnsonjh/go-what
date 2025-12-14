@@ -269,8 +269,17 @@ func main() {
 			u = &user.User{Username: strconv.Itoa(int(uid))}
 		}
 
-		fmt.Printf("% -8.8s %-7s %d more processes\n",
-			u.Username, "none", count)
+		if u.Username == "root" && count == 0 {
+			continue
+		}
+
+		processString := "processes"
+		if count == 1 {
+			processString = "process"
+		}
+
+		fmt.Printf("% -8.8s %-7s %d more %s\n",
+			u.Username, "none", count, processString)
 	}
 }
 

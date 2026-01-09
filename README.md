@@ -1,6 +1,6 @@
 <!-- go-what - README.md -->
 <!-- Copyright (c) 2016 MIT PDOS -->
-<!-- Copyright (c) 2025 Jeffrey H. Johnson -->
+<!-- Copyright (c) 2025-2026 Jeffrey H. Johnson -->
 <!-- SPDX-License-Identifier: MIT-0 -->
 <!-- scspell-id: 8ff6fa5e-83cd-11f0-9914-80ee73e9b8e7 -->
 # go-what
@@ -21,5 +21,5 @@ same as the original Python implementation):
 
 ```sh
 env GOTOOLCHAIN="$(grep '^go .*$' go.mod | tr -cd 'go0-9.\n')+auto" \
-  GOFLAGS="-ldflags=-s -w" CGO_ENABLED=0 go build -v
+  GOFLAGS="-ldflags=-s -w" CGO_ENABLED=0 go build -v -trimpath
 ```

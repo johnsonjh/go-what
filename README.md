@@ -23,3 +23,14 @@ same as the original Python implementation):
 env GOTOOLCHAIN="$(grep '^go .*$' go.mod | tr -cd 'go0-9.\n')+auto" \
   GOFLAGS="-ldflags=-s -w" CGO_ENABLED=0 go build -v -trimpath
 ```
+<!--
+Local Variables:
+mode: markdown
+indent-tabs-mode: nil
+fill-column: 78
+eval: (setq-local display-fill-column-indicator-column 78)
+eval: (display-fill-column-indicator-mode 1)
+End:
+-->
+<!-- vim: set ft=markdown expandtab cc=78 : -->
+<!-- EOF -->
